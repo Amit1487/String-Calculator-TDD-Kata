@@ -93,9 +93,30 @@ void main() {
     });
   });
 
-  test('test case returns number of Add method invocations', () {
-    calculator.add('1');
-    calculator.add('1,2');
-    expect(calculator.getCalledCount(), equals(2));
+  group('test cases returns number of Add method invocations', () {
+    test('GetCalledCount returns 0 initially', () {
+      expect(calculator.getCalledCount(), equals(0));
+    });
+
+    test('GetCalledCount returns number of Add invocations', () {
+      calculator.add('1');
+      calculator.add('1,2');
+      calculator.add('');
+
+      expect(calculator.getCalledCount(), equals(3));
+    });
+
+    test('counts calls even with custom delimiters', () {
+      calculator.add('//[***]\n1***2');
+
+      expect(calculator.getCalledCount(), equals(1));
+    });
+
+    test('counts calls even when exceptions occur', () {
+      expect(() => calculator.add('-1'), throwsA(isA<ArgumentError>()));
+      expect(
+          calculator.getCalledCount(), equals(1)); // Still counts failed calls
+    });
+
   });
 }
