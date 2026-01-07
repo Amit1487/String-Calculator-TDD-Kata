@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:string_calculator_kata_tdd/string_calculator.dart';
 
 void main() {
-
   late StringCalculator calculator;
 
   setUp(() {
@@ -11,5 +10,10 @@ void main() {
 
   test('returns 0 for empty string', () {
     expect(calculator.add(''), equals(0));
+  });
+
+  test('single number returns itself', () {
+    expect(calculator.add('1'), equals(1));
+    expect(calculator.add('5'), equals(5));
   });
 }
