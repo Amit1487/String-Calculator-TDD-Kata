@@ -8,9 +8,9 @@ class StringCalculator {
 
   List<String> split(String numbers) {
     return numbers
-        .replaceAll('\n', ',')
+        .replaceAll('\n', ',') // Normalize newlines to delimiter
         .split(',')
-        .where((s) => s.isNotEmpty)
+        .where((s) => s.isNotEmpty) // Filter empty strings!
         .toList();
   }
 
