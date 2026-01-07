@@ -33,11 +33,6 @@ void main() {
       expect(calculator.add('1,,3'), equals(4));
     });
 
-    test('supports custom delimiters', () {
-      expect(calculator.add('//;\n1;2'), equals(3));
-      expect(calculator.add('//|\n1|2|3'), equals(6));
-    });
-
     test('ignore numbers > 1000', () {
       expect(calculator.add('1000,1'), equals(1001));
       expect(calculator.add('2000,1'), equals(1));
@@ -58,6 +53,31 @@ void main() {
 
     test('handling for multiple char delimiter', () {
       expect(StringCalculator().add('//[***]\n1***2***3'), equals(6));
+    });
+  });
+
+  group('Complete test cases for Custom Delimiters', () {
+    test('supports custom delimiters', () {
+      expect(calculator.add('//;\n1;2'), equals(3));
+      expect(calculator.add('//|\n1|2|3'), equals(6));
+    });
+
+    test('handling for single char delimiter', () {
+      expect(StringCalculator().add('//;\n1;2;3'), equals(6));
+    });
+
+    test('handling for multiple char delimiter', () {
+      expect(StringCalculator().add('//[***]\n1***2***3'), equals(6));
+    });
+
+    test('handling for multiple custom delimiters', () {
+      expect(StringCalculator().add('//[*][%]\n1*2%3'), equals(6));
+      expect(StringCalculator().add('//[abc][xyz]\n1abc2xyz3'), equals(6));
+    });
+
+    test('handling for complex delimiters', () {
+      expect(
+          StringCalculator().add('//[Hello][World]\n1Hello2World3'), equals(6));
     });
   });
 }
