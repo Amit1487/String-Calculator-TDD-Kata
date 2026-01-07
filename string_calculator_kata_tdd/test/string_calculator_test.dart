@@ -18,8 +18,8 @@ void main() {
     });
 
     test('sum two comma separated numbers', () {
-      expect(StringCalculator().add('1,2'), equals(3));
-      expect(StringCalculator().add('1,1'), equals(2));
+      expect(calculator.add('1,2'), equals(3));
+      expect(calculator.add('1,1'), equals(2));
     });
 
     /// this test case does not require any implementation as it works with the existing implementation
@@ -28,20 +28,20 @@ void main() {
     });
 
     test('handles newlines and multiple commas', () {
-      expect(StringCalculator().add('1\n2,3'), equals(6));
-      expect(StringCalculator().add('1,\n2'), equals(3));
-      expect(StringCalculator().add('1,,3'), equals(4));
+      expect(calculator.add('1\n2,3'), equals(6));
+      expect(calculator.add('1,\n2'), equals(3));
+      expect(calculator.add('1,,3'), equals(4));
     });
 
     test('supports custom delimiters', () {
-      expect(StringCalculator().add('//;\n1;2'), equals(3));
-      expect(StringCalculator().add('//|\n1|2|3'), equals(6));
+      expect(calculator.add('//;\n1;2'), equals(3));
+      expect(calculator.add('//|\n1|2|3'), equals(6));
     });
 
     test('ignore numbers > 1000', () {
-      expect(StringCalculator().add('1000,1'), equals(1001));
-      expect(StringCalculator().add('2000,1'), equals(1));
+      expect(calculator.add('1000,1'), equals(1001));
+      expect(calculator.add('2000,1'), equals(1));
     });
-    
+
   });
 }
