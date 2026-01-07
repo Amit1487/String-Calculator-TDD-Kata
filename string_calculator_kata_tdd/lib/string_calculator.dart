@@ -24,9 +24,14 @@ class StringCalculator {
   }
 
   int sum(List<String> numbers) {
+    var negatives = numbers.where((n) => int.parse(n) < 0);
+    if (negatives.isNotEmpty) {
+      throw ArgumentError('Negatives numbers are not allowed: ${negatives.join(',')}');
+    }
+
     return numbers
         .where((n) => int.parse(n) <= 1000)
         .map(int.parse)
-        .reduce((a, b) => a + b);
+        .fold(0, (a, b) => a + b);
   }
 }
