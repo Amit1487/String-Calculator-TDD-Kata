@@ -37,5 +37,11 @@ void main() {
       expect(StringCalculator().add('//;\n1;2'), equals(3));
       expect(StringCalculator().add('//|\n1|2|3'), equals(6));
     });
+
+    test('ignore numbers > 1000', () {
+      expect(StringCalculator().add('1000,1'), equals(1001));
+      expect(StringCalculator().add('2000,1'), equals(1));
+    });
+    
   });
 }
