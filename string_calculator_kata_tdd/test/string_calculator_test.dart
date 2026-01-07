@@ -46,5 +46,18 @@ void main() {
     test('negative numbers throws exception', () {
       expect(() => calculator.add('2,-3,4'), throwsArgumentError);
     });
+
+    test('shows all negative numbers in exception message', () {
+      expect(
+        () => calculator.add('2,-3,-4'),
+        throwsA(isA<ArgumentError>().having((e) => e.message, 'message',
+            contains('-3,-4') // Use e.message directly
+            )),
+      );
+    });
+
+    test('handling for multiple char delimiter', () {
+      expect(StringCalculator().add('//[***]\n1***2***3'), equals(6));
+    });
   });
 }
