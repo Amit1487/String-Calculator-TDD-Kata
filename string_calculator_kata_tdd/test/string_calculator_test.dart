@@ -43,5 +43,8 @@ void main() {
       expect(calculator.add('2000,1'), equals(1));
     });
 
+    test('negative numbers throws exception', () {
+      expect(() => calculator.add('2,-3,4'), throwsArgumentError);
+    });
   });
 }
