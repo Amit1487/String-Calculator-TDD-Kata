@@ -80,4 +80,19 @@ void main() {
           StringCalculator().add('//[Hello][World]\n1Hello2World3'), equals(6));
     });
   });
+
+  group('Handling Invalid Input', () {
+    test('throws exception for invalid input', () {
+      expect(() => calculator.add('1,a,3'), throwsA(isA<FormatException>()));
+    });
+
+    test('throws exception for letters in numbers', () {
+      expect(() => calculator.add('1,abc,3'), throwsA(isA<FormatException>()));
+      expect(() => calculator.add(',1,2,xyz'), throwsA(isA<FormatException>()));
+    });
+
+    test('throws exception for special characters', () {
+      expect(() => calculator.add('1,2,@'), throwsA(isA<FormatException>()));
+    });
+  });
 }
