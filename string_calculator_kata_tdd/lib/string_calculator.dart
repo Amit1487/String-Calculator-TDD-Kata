@@ -12,11 +12,7 @@ class StringCalculator {
       String rest = numbers.substring(4);
       return _splitNumbers(rest, delimiter);
     }
-    return numbers
-        .replaceAll('\n', ',') // Normalize newlines to delimiter
-        .split(',')
-        .where((s) => s.isNotEmpty) // Filter empty strings
-        .toList();
+    return _splitNumbers(numbers, ',');
   }
 
   List<String> _splitNumbers(String numbers, String delimiter) {
