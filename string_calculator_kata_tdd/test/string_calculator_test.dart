@@ -22,11 +22,14 @@ void main() {
       expect(StringCalculator().add('1,1'), equals(2));
     });
 
+    test('handles sum for multiple numbers', () {
+      expect(calculator.add('1,2,3,4,5'), 15);
+    });
+
     test('handles newlines and multiple commas', () {
       expect(StringCalculator().add('1\n2,3'), equals(6));
       expect(StringCalculator().add('1,\n2'), equals(3));
       expect(StringCalculator().add('1,,3'), equals(4));
     });
-    
   });
 }
