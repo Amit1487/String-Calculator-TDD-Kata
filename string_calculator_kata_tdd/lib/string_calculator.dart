@@ -3,9 +3,15 @@ class StringCalculator {
   /// Adds numbers in the given string and returns the sum.
   int add(String numbers) {
     if (numbers.isEmpty) return 0;
-    if (!numbers.contains(',')) return int.parse(numbers);
+    return sum(split(numbers));
+  }
 
-    var parts = numbers.split(',');
-    return int.parse(parts[0]) + int.parse(parts[1]);
+  List<String> split(String numbers) {
+    if (!numbers.contains(',')) return [numbers];
+    return numbers.split(',');
+  }
+
+  int sum(List<String> numbers) {
+    return numbers.map(int.parse).reduce((a, b) => a + b);
   }
 }
