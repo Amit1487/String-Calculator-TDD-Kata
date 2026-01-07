@@ -92,4 +92,10 @@ void main() {
       expect(() => calculator.add('1,2,@'), throwsA(isA<FormatException>()));
     });
   });
+
+  test('test case returns number of Add method invocations', () {
+    calculator.add('1');
+    calculator.add('1,2');
+    expect(calculator.getCalledCount(), equals(2));
+  });
 }
