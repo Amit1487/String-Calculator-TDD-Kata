@@ -1,6 +1,7 @@
 name: string_calculator_kata_tdd
 description: "Implement the String Calculator Kata using strict Test-Driven Development (TDD) methodology"
-publish_to: 'none'version: 1.0.0+1
+publish_to: 'none' 
+version: 1.0.0+1
 
 environment:
   sdk: ^3.6.0-25.0.dev
