@@ -7,13 +7,14 @@ void main() {
   setUp(() {
     calculator = StringCalculator();
   });
+  group('String Calculator tests', () {
+    test('returns 0 for empty string', () {
+      expect(calculator.add(''), equals(0));
+    });
 
-  test('returns 0 for empty string', () {
-    expect(calculator.add(''), equals(0));
-  });
-
-  test('single number returns itself', () {
-    expect(calculator.add('1'), equals(1));
-    expect(calculator.add('5'), equals(5));
+    test('single number returns itself', () {
+      expect(calculator.add('1'), equals(1));
+      expect(calculator.add('5'), equals(5));
+    });
   });
 }
