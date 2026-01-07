@@ -7,7 +7,7 @@ void main() {
   setUp(() {
     calculator = StringCalculator();
   });
-  group('String Calculator tests', () {
+  group('test cases for sum of numbers', () {
     test('returns 0 for empty string', () {
       expect(calculator.add(''), equals(0));
     });
@@ -37,7 +37,9 @@ void main() {
       expect(calculator.add('1000,1'), equals(1001));
       expect(calculator.add('2000,1'), equals(1));
     });
+  });
 
+  group(' test cases for exceptions', () {
     test('negative numbers throws exception', () {
       expect(() => calculator.add('2,-3,4'), throwsArgumentError);
     });
@@ -50,38 +52,33 @@ void main() {
             )),
       );
     });
-
-    test('handling for multiple char delimiter', () {
-      expect(StringCalculator().add('//[***]\n1***2***3'), equals(6));
-    });
   });
 
-  group('Complete test cases for Custom Delimiters', () {
+  group(' test cases for Custom Delimiters', () {
     test('supports custom delimiters', () {
       expect(calculator.add('//;\n1;2'), equals(3));
       expect(calculator.add('//|\n1|2|3'), equals(6));
     });
 
     test('handling for single char delimiter', () {
-      expect(StringCalculator().add('//;\n1;2;3'), equals(6));
+      expect(calculator.add('//;\n1;2;3'), equals(6));
     });
 
     test('handling for multiple char delimiter', () {
-      expect(StringCalculator().add('//[***]\n1***2***3'), equals(6));
+      expect(calculator.add('//[***]\n1***2***3'), equals(6));
     });
 
     test('handling for multiple custom delimiters', () {
-      expect(StringCalculator().add('//[*][%]\n1*2%3'), equals(6));
-      expect(StringCalculator().add('//[abc][xyz]\n1abc2xyz3'), equals(6));
+      expect(calculator.add('//[*][%]\n1*2%3'), equals(6));
+      expect(calculator.add('//[abc][xyz]\n1abc2xyz3'), equals(6));
     });
 
     test('handling for complex delimiters', () {
-      expect(
-          StringCalculator().add('//[Hello][World]\n1Hello2World3'), equals(6));
+      expect(calculator.add('//[Hello][World]\n1Hello2World3'), equals(6));
     });
   });
 
-  group('Handling Invalid Input', () {
+  group('test cases for Handling Invalid Input', () {
     test('throws exception for invalid input', () {
       expect(() => calculator.add('1,a,3'), throwsA(isA<FormatException>()));
     });

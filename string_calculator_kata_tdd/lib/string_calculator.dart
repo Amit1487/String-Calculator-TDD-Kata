@@ -8,14 +8,12 @@ class StringCalculator {
 
   List<String> split(String numbers) {
     if (numbers.startsWith('//')) {
-      // Find the position of the first \n after //
       int newlineIndex = numbers.indexOf('\n');
       if (newlineIndex == -1) return [];
 
       String delimiterPart = numbers.substring(2, newlineIndex);
       String rest = numbers.substring(newlineIndex + 1);
 
-      // Handle multiple delimiters like //[***][%%%]\n or single //[***]\n
       List<String> delimiters = [];
       int start = 0;
       while (start < delimiterPart.length) {
@@ -28,7 +26,6 @@ class StringCalculator {
             break;
           }
         } else {
-          // Single char delimiter (backward compatibility)
           delimiters.add(delimiterPart[start]);
           start++;
         }
@@ -48,20 +45,18 @@ class StringCalculator {
   }
 
   int sum(List<String> numbers) {
-var negatives = <String>[];
-for (String numberStr in numbers) {
-    // Check for non-numeric values first
-    if (numberStr.isNotEmpty && double.tryParse(numberStr) == null) {
-      throw FormatException('Invalid number: $numberStr');
-    }
-    
-    int number = int.parse(numberStr);
-    if (number < 0) {
-      negatives.add(numberStr);
-    }
-  }
+    var negatives = <String>[];
+    for (String numberStr in numbers) {
+      if (numberStr.isNotEmpty && double.tryParse(numberStr) == null) {
+        throw FormatException('Invalid number: $numberStr');
+      }
 
-    // var negatives = numbers.where((n) => int.parse(n) < 0);
+      int number = int.parse(numberStr);
+      if (number < 0) {
+        negatives.add(numberStr);
+      }
+    }
+
     if (negatives.isNotEmpty) {
       throw ArgumentError(
           'Negatives numbers are not allowed: ${negatives.join(',')}');
