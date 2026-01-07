@@ -7,8 +7,11 @@ class StringCalculator {
   }
 
   List<String> split(String numbers) {
-    if (!numbers.contains(',')) return [numbers];
-    return numbers.split(',');
+    return numbers
+        .replaceAll('\n', ',')
+        .split(',')
+        .where((s) => s.isNotEmpty)
+        .toList();
   }
 
   int sum(List<String> numbers) {
