@@ -7,10 +7,23 @@ class StringCalculator {
   }
 
   List<String> split(String numbers) {
+    if (numbers.startsWith('//')) {
+      String delimiter = numbers[2];
+      String rest = numbers.substring(4);
+      return _splitNumbers(rest, delimiter);
+    }
     return numbers
         .replaceAll('\n', ',') // Normalize newlines to delimiter
         .split(',')
-        .where((s) => s.isNotEmpty) // Filter empty strings!
+        .where((s) => s.isNotEmpty) // Filter empty strings
+        .toList();
+  }
+
+  List<String> _splitNumbers(String numbers, String delimiter) {
+    return numbers
+        .replaceAll('\n', delimiter)
+        .split(delimiter)
+        .where((s) => s.isNotEmpty)
         .toList();
   }
 
