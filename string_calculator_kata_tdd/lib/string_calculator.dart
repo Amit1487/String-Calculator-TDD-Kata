@@ -1,9 +1,21 @@
 /// String Calculator implements the classic TDD kata.
 class StringCalculator {
+  int _callCount = 0;
+
+  int getCalledCount() {
+    return _callCount;
+  }
+
   /// Adds numbers in the given string and returns the sum.
   int add(String numbers) {
+    _callCount++;
+
     if (numbers.isEmpty) return 0;
-    return sum(split(numbers));
+    try {
+      return sum(split(numbers));
+    } catch (e) {
+      rethrow;
+    }
   }
 
   List<String> split(String numbers) {
