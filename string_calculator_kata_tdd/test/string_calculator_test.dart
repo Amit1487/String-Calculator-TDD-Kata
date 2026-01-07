@@ -22,7 +22,7 @@ void main() {
       expect(StringCalculator().add('1,1'), equals(2));
     });
 
-/// this test case does not require any implementation as it works with the existing implementation
+    /// this test case does not require any implementation as it works with the existing implementation
     test('handles sum for multiple numbers', () {
       expect(calculator.add('1,2,3,4,5'), 15);
     });
@@ -33,7 +33,9 @@ void main() {
       expect(StringCalculator().add('1,,3'), equals(4));
     });
 
-
-
+    test('supports custom delimiters', () {
+      expect(StringCalculator().add('//;\n1;2'), equals(3));
+      expect(StringCalculator().add('//|\n1|2|3'), equals(6));
+    });
   });
 }
