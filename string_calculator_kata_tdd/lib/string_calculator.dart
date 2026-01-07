@@ -24,6 +24,9 @@ class StringCalculator {
   }
 
   int sum(List<String> numbers) {
-    return numbers.map(int.parse).reduce((a, b) => a + b);
+    return numbers
+        .where((n) => int.parse(n) <= 1000)
+        .map(int.parse)
+        .reduce((a, b) => a + b);
   }
 }
